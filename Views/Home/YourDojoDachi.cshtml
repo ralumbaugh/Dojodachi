@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Dojodachi
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Fullness: @Model.Fullness  Happiness: @Model.Happiness  Meals: @Model.Meals  Energy: @Model.Energy</p>
+    <img src="~/img/@Model.PictureLocation">
+    @{
+        if(@Model.LastAction != "")
+        {
+            <p>@Model.LastAction</p>
+        }
+        if(@Model.IsAlive == false || (@Model.Fullness > 100 && @Model.Happiness > 100 && @Model.Energy > 100))
+        {
+            <form action="Reset" method="post">
+                <button>Restart?</button>
+            </form>
+        }
+        else
+        {
+            <form action="Feed" method="post">
+                <button>Feed</button>
+            </form>
+            <form action="Play" method="post">
+                <button>Play</button>
+            </form>
+            <form action="Work" method="post">
+                <button>Work</button>
+            </form>
+            <form action="Sleep" method="post">
+                <button>Sleep</button>
+            </form>
+        }
+    }
+</div>
